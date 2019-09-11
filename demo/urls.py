@@ -15,32 +15,29 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
+from django.urls import include
+
 from . import views
+
+# from app01 import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', views.hello),
-    re_path(r'^$', views.hello),
-    re_path(r'fenzu/(\d)', views.fenzu),
-    re_path(r'zuming/(?P<year>\d{4})/(?P<city>\w+)', views.zuming),
-    path('gethtml/', views.gethtml),
+    # path('hello/', views.hello),
+    # re_path(r'^$', views.hello),
+    # re_path(r'fenzu/(\d)', views.fenzu),
+    # re_path(r'zuming/(?P<year>\d{4})/(?P<city>\w+)', views.zuming),
+    # path('gethtml/', views.gethtml),
+    #
+    # path('index/', views.index),
+    #
+    # path('index2/', views.index2),
+    # path('index3/', views.index3),
+    # path('xinxi/', views.xinxi),
+    # re_path('kongzhi/(\d+)', views.kongzhi),
+    # path('staticdemo/',views.staticdemo),
 
+    # path('app01ss/',app01views.ss),
 
-    path('index/', views.index),
-
-    path('index2/', views.index2),
-
-    path('index3/', views.index3),
-
-
-
-    path('xinxi/', views.xinxi),
-
-
-
-    re_path('kongzhi/(\d+)', views.kongzhi),
-
-
-    path('staticdemo/',views.staticdemo)
-
+    path('app01/', include('app01.urls')),
 ]
