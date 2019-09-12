@@ -154,18 +154,18 @@ def yddadd(request):
     # Publish.objects.create(name='河北出版社',address = '河北')
 
     # 增加书
-    # Book.objects.create(name='西游记',publish_id = 1)
-    Book.objects.create(name='三国演义',publish_id = 1)
+    # Book.objects.create(name='西游记',p_id = 1)
+    # Book.objects.create(name='三国演义',p_id = 1)
 
     # 正向操作 从外键所在的表到主表
     # book = Book()
-    # book.name = '红楼梦'
-    # book.publish = Publish.objects.get(name='河南出版社')
+    # book.name = '聊斋'
+    # book.p = Publish.objects.get(name='山西出版社')
     # book.save()
 
     # 反向操作 从主表到从表
-    # publish_obj = Publish.objects.get(name="山西出版社")
-    # publish_obj.book_set.create(name='水浒传')
+    # p= Publish.objects.get(name="山东出版社")
+    # p.book_set.create(name='唐诗')
     return HttpResponse('一对多增加成功')
 
 def yddquery(request):
@@ -183,8 +183,35 @@ def yddquery(request):
 
 
     # 反向查询 从主表到从表 _set
-    publish = Publish.objects.get(name='山东出版社')
-    book = publish.book_set.all()
-    for one in book:
-        print(one.name)
+    # publish = Publish.objects.get(name='山东出版社')
+    # book = publish.book_set.all()
+    # for one in book:
+    #     print(one.name)
     return  HttpResponse('一对多查询成功')
+
+
+def dddadd(request):
+    # Teacher.objects.create(name='赵老师',gender=1)
+    # Teacher.objects.create(name='钱老师',gender=0)
+    # Teacher.objects.create(name='孙老师',gender=0)
+    # Teacher.objects.create(name='李老师',gender=1)
+
+    # 新学员 田七 是 赵老师 的学生 正向
+    # teacher_obj=Teacher.objects.filter(name='赵老师').first()
+    # teacher_obj.person.create(name='田七',gender=0,age=16)
+
+    # 老学员 李四 是 钱老师 的学生 正向
+    # teacher_obj=Teacher.objects.filter(name='钱老师').first()
+    # person_obj=Person.objects.filter(name='李四').first()
+    # teacher_obj.person.add(person_obj)
+
+    return HttpResponse('多对多增加成功')
+
+def dddquery(request):
+    return HttpResponse('多对多增加成功')
+
+def dddupdate(request):
+    return HttpResponse('多对多增加成功')
+
+def ddddelete(request):
+    return HttpResponse('多对多增加成功')

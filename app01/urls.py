@@ -12,6 +12,12 @@ urlpatterns = [
     path('yddadd/', views.yddadd),
     path('yddquery/', views.yddquery),
 
+    path('dddadd/', views.dddadd),
+    path('dddquery/', views.dddquery),
+    path('dddupdate/', views.dddupdate),
+    path('ddddelete/', views.ddddelete),
+
+
 ]
 
 

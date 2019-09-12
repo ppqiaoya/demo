@@ -14,6 +14,16 @@ class Person(models.Model):
     class Meta:
         db_table = 'person'
 
+class Teacher(models.Model):
+    name = models.CharField(max_length=32)
+    gender = models.SmallIntegerField()
+    person = models.ManyToManyField(to=Person)
+
+    class Meta:
+        db_table = 'teacher'
+
+
+
 
 class Publish(models.Model):
     name = models.CharField(max_length=32)
@@ -25,7 +35,7 @@ class Publish(models.Model):
 
 class Book(models.Model):
     name = models.CharField(max_length=32)
-    publish = models.ForeignKey(to=Publish, to_field='id', on_delete=models.CASCADE)
+    p = models.ForeignKey(to=Publish, to_field='id', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'book'
