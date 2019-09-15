@@ -189,6 +189,28 @@ def yddquery(request):
     #     print(one.name)
     return  HttpResponse('一对多查询成功')
 
+def yddupdate(request):
+    # save 把id=1的书改为河北出版社出版
+    # book=Book.objects.get(id=1)
+    # book.p=Publish.objects.get(name='河北出版社')
+    # book.save()
+
+    # update 把水浒传改为河北出版社出版
+    # publish_obj=Publish.objects.get(name='河北出版社')
+    # Book.objects.filter(name='水浒传').update(p=publish_obj)
+
+    # set 反向 把id=3和id=4的书修改为河南出版社出版
+    # publish_obj = Publish.objects.get(name='河南出版社')
+    # book=Book.objects.get(id=3)
+    # book1=Book.objects.get(id=4)
+    # publish_obj.book_set.set([book,book1])
+    return HttpResponse('一对多修改成功')
+
+def ydddelete(request):
+    # 一起使用同时删除,先删除外键所在的表，再删除关联表
+    # Book.objects.get(id=7).delete()  # 单独使用删除书籍
+    # Publish.objects.get(name='搜索').delete()  # 单独使用删除出版社
+    return HttpResponse('一对多删除成功')
 
 def dddadd(request):
     # Teacher.objects.create(name='赵老师',gender=1)
@@ -205,13 +227,40 @@ def dddadd(request):
     # person_obj=Person.objects.filter(name='李四').first()
     # teacher_obj.person.add(person_obj)
 
+    # 田七 还是 孙老师的学生 反向
+    # person_obj=Person.objects.filter(name='田七').first()
+    # teacher_obj=Teacher.objects.filter(name='孙老师').first()
+    # person_obj.teacher_set.add(teacher_obj)
     return HttpResponse('多对多增加成功')
 
 def dddquery(request):
-    return HttpResponse('多对多增加成功')
+    # 正向 查到老师信息，寻找这个老师所教的学生
+    # teacher_obj=Teacher.objects.filter(name='赵老师').first()
+    # person=teacher_obj.person.all()
+    # print(person)
+
+    # 反向 查到学生信息，寻找这个学生的老师
+    # person_obj=Person.objects.filter(name='李四').first()
+    # teacher_obj=person_obj.teacher_set.all()
+    # print(teacher_obj)
+    return HttpResponse('多对多查询成功')
 
 def dddupdate(request):
-    return HttpResponse('多对多增加成功')
+    # 正向 从外键所在表到关联表   t-p
+    # 孙老师教 赵六 和 田七
+    # teacher_obj = Teacher.objects.filter(name='孙老师').first()
+    # person1=Person.objects.filter(name='赵六').first()
+    # person2=Person.objects.filter(name='田七').first()
+    # set 后面放一个列表，列表中可以是id，可以是对象
+    # teacher_obj.person.set([person1,person2])
+
+    # 反向 张三老师变为除了赵老师之外的其他三个老师
+    # person_obj=Person.objects.filter(name='张三').first()
+    # teacher1=Teacher.objects.filter(id=2).first()
+    # teacher2=Teacher.objects.filter(id=3).first()
+    # teacher3=Teacher.objects.filter(id=4).first()
+    # person_obj.teacher_set.set([teacher1,teacher2,teacher3])
+    return HttpResponse('多对多修改成功')
 
 def ddddelete(request):
-    return HttpResponse('多对多增加成功')
+    return HttpResponse('多对多删除成功')
