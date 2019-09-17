@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 # def hello(request):
@@ -30,9 +31,9 @@ from django.http import HttpResponse
 # from django.shortcuts import render
 #
 #
-# def index(request):
-#     name = '张三三'
-#     return render(request, 'index.html', {'name': name})
+def index(request):
+    name = '张1234'
+    return render(request, 'index.html', {'名字': name})
 #
 #
 # from django.shortcuts import render_to_response

@@ -29,7 +29,7 @@ urlpatterns = [
     # re_path(r'zuming/(?P<year>\d{4})/(?P<city>\w+)', views.zuming),
     # path('gethtml/', views.gethtml),
     #
-    # path('index/', views.index),
+    path('index/', views.index),
     #
     # path('index2/', views.index2),
     # path('index3/', views.index3),

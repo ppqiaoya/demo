@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import *
 
 
+
 # Create your views here.
 
 def ss(request):
@@ -263,4 +264,48 @@ def dddupdate(request):
     return HttpResponse('多对多修改成功')
 
 def ddddelete(request):
+    # remove()  解除对象之间的关系
+    # 正向 李四 不是 李老师 的学生了
+    # person_obj=Person.objects.filter(name='李四').first()
+    # teacher_obj=Teacher.objects.filter(name='李老师').first()
+    # teacher_obj.person.remove(person_obj)
+
+    # 反向 孙老师 不教 张三 了
+    # teacher_obj=Teacher.objects.filter(name='孙老师').first()
+    # person_obj=Person.objects.filter(name='张三').first()
+    # person_obj.teacher_set.remove(teacher_obj)
+
+    # delete() 删除对象数据，以及对象之间的关系
+    # 赵老师离职了
+    # Teacher.objects.filter(name="赵老师").first().delete()
+
+    # 张666退学了
+    # Person.objects.filter(name='张666').first().delete()
     return HttpResponse('多对多删除成功')
+
+from django.db.models import Avg,Sum,Max,Min,Count,F,Q
+def jhcx(request):
+    # data = Person.objects.all().aggregate(Avg("age"))
+    # print(data)
+    # data = Person.objects.all().aggregate(Max("age"))
+    # print(data)
+    # data = Person.objects.all().aggregate(Count("id"))
+    # print(data)
+    return HttpResponse('聚合查询成功')
+
+def requesttest(request):
+    # print(request)  # <WSGIRequest: GET '/app01/requesttest/'>
+
+    # 获取post 的请求参数
+    # data = request.POST
+
+    # 获取get请求传递的参数
+    data = request.GET
+    print(data)  # <QueryDict: {'name': ['zs'], 'age': ['16']}>
+    print(data.get("name"))  # zs
+    print(type(data.get("name")))  # <class 'str'>
+    print(data.get("age"))  # 16
+    return HttpResponse("姓名：%s年龄%s" % (data.get("name"), data.get("age")))
+
+
+    # return HttpResponse('请求测试')
